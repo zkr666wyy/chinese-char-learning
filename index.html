@@ -211,92 +211,542 @@
     font-size: 0.85em;
   }
 
+  /* Learning Page Styles */
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--card-bg);
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 8px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95em;
+    margin-bottom: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .back-btn:hover {
+    background: var(--light-gold);
+    border-color: var(--gold);
+  }
+  .char-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 16px;
+    margin: 30px 0;
+  }
+  .char-cell {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px 10px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .char-cell:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    border-color: var(--gold);
+  }
+  .char-display {
+    font-size: 2.5em;
+    font-family: 'Noto Serif SC', serif;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .char-pinyin {
+    font-size: 0.85em;
+    color: var(--primary);
+    font-weight: 500;
+  }
+
+  /* Detail Modal */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.active {
+    display: flex;
+  }
+  .modal {
+    background: var(--card-bg);
+    border-radius: 16px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 32px;
+    position: relative;
+  }
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 1.5em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+  }
+  .modal-close:hover { color: var(--text); }
+  .detail-char {
+    font-size: 4em;
+    font-family: 'Noto Serif SC', serif;
+    text-align: center;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .detail-pinyin {
+    text-align: center;
+    font-size: 1.3em;
+    color: var(--primary);
+    margin-bottom: 24px;
+    font-weight: 600;
+  }
+  .detail-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .info-item {
+    background: var(--light-gold);
+    padding: 12px 16px;
+    border-radius: 8px;
+  }
+  .info-label {
+    font-size: 0.8em;
+    color: #888;
+    margin-bottom: 4px;
+  }
+  .info-value {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .detail-section {
+    margin-bottom: 20px;
+  }
+  .detail-section h3 {
+    font-size: 1em;
+    color: var(--gold);
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+  }
+  .detail-section p {
+    color: #555;
+    line-height: 1.8;
+  }
+  .words-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .word-tag {
+    background: var(--light-gold);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    color: var(--text);
+  }
+
+  /* Writing Canvas */
+  .canvas-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .writing-canvas {
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    background: #fff;
+    cursor: crosshair;
+  }
+  .canvas-controls {
+    display: flex;
+    gap: 12px;
+  }
+  .btn {
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+  }
+  .btn-primary:hover {
+    background: #d45204;
+  }
+  .btn-secondary {
+    background: var(--light-gold);
+    color: var(--text);
+  }
+  .btn-secondary:hover {
+    background: rgba(201, 169, 97, 0.25);
+  }
+
+  /* Page Sections */
+  .page-section {
+    display: none;
+  }
+  .page-section.active {
+    display: block;
+  }
+
+  /* Practice Page */
+  .quiz-container {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 24px 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .quiz-question {
+    font-size: 1.2em;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .quiz-char {
+    font-size: 3em;
+    font-family: 'Noto Serif SC', serif;
+    margin: 16px 0;
+  }
+  .quiz-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .quiz-option {
+    padding: 16px;
+    border: 2px solid rgba(201, 169, 97, 0.2);
+    border-radius: 10px;
+    background: var(--bg);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s;
+    font-size: 1.1em;
+  }
+  .quiz-option:hover {
+    border-color: var(--gold);
+    background: var(--light-gold);
+  }
+  .quiz-option.correct {
+    border-color: var(--green);
+    background: rgba(45, 138, 62, 0.1);
+  }
+  .quiz-option.wrong {
+    border-color: #dc2626;
+    background: rgba(220, 38, 38, 0.1);
+  }
+  .quiz-result {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.1em;
+    font-weight: 600;
+  }
+  .quiz-score {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.2em;
+  }
+  .score-num {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  /* Game Page */
+  .game-levels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+  }
+  .level-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 28px 20px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    border: 2px solid rgba(201, 169, 97, 0.2);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .level-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+  }
+  .level-card.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .level-num {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .level-name {
+    font-size: 1.1em;
+    margin: 8px 0;
+    font-weight: 600;
+  }
+  .level-desc {
+    font-size: 0.85em;
+    color: #888;
+  }
+  .stars {
+    margin-top: 12px;
+    font-size: 1.3em;
+  }
+
   /* Responsive */
   @media (max-width: 600px) {
     h1 { font-size: 2em; }
     header { padding: 50px 0 35px; }
     .grade-grid { grid-template-columns: repeat(3, 1fr); }
     .modules { grid-template-columns: 1fr; }
+    .detail-info { grid-template-columns: 1fr; }
+    .quiz-options { grid-template-columns: 1fr; }
+    .modal { padding: 24px 16px; }
   }
 </style>
 </head>
 <body>
 <div class="container">
-  <header>
-    <div class="brand">汉字乐园</div>
-    <h1>小学语文生字学习</h1>
-    <div class="gold-line"></div>
-    <div class="subtitle">人教版教材 · 1-6年级全覆盖</div>
-    <p class="tagline">拼音 · 笔画 · 部首 · 组词 · 互动练习<br>让汉字学习变得有趣又高效</p>
-  </header>
 
-  <!-- Stats -->
-  <div class="stats-bar">
-    <div class="stat-item">
-      <span class="stat-num">12</span>
-      <div class="stat-label">学期覆盖</div>
+  <!-- HOME PAGE -->
+  <div id="homePage" class="page-section active">
+    <header>
+      <div class="brand">汉字乐园</div>
+      <h1>小学语文生字学习</h1>
+      <div class="gold-line"></div>
+      <div class="subtitle">人教版教材 · 1-6年级全覆盖</div>
+      <p class="tagline">拼音 · 笔画 · 部首 · 组词 · 互动练习<br>让汉字学习变得有趣又高效</p>
+    </header>
+
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-num">12</span>
+        <div class="stat-label">学期覆盖</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">50+</span>
+        <div class="stat-label">课文单元</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3000+</span>
+        <div class="stat-label">生字收录</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">4</span>
+        <div class="stat-label">互动模块</div>
+      </div>
     </div>
-    <div class="stat-item">
-      <span class="stat-num">50+</span>
-      <div class="stat-label">课文单元</div>
+
+    <div class="grade-section">
+      <h2 class="section-title">📚 按年级选择</h2>
+      <div class="grade-grid" id="gradeGrid"></div>
     </div>
-    <div class="stat-item">
-      <span class="stat-num">3000+</span>
-      <div class="stat-label">生字收录</div>
+
+    <h2 class="section-title">🎯 功能模块</h2>
+    <div class="modules">
+      <div class="module-card" onclick="showPage('learning')">
+        <div class="card-icon">📖</div>
+        <div class="card-title">完整生字资料</div>
+        <div class="card-desc">全部生字按年级、单元系统整理。包含拼音、笔画、部首、结构、释义及常用组词。</div>
+        <span class="card-tag">静态资料</span>
+      </div>
+
+      <div class="module-card" onclick="showPage('practice')">
+        <div class="card-icon">✏️</div>
+        <div class="card-title">生字练习</div>
+        <div class="card-desc">多种互动题型：拼音选择、部首识别、组词填空、笔画排序。即时反馈，自动评分。</div>
+        <span class="card-tag">互动练习</span>
+      </div>
+
+      <div class="module-card" onclick="showPage('game')">
+        <div class="card-icon">🎮</div>
+        <div class="card-title">生字闯关</div>
+        <div class="card-desc">游戏化学习体验，多个关卡逐步解锁。拼音挑战、字形辨认、组词达人等丰富题型。</div>
+        <span class="card-tag">互动游戏</span>
+      </div>
+
+      <div class="module-card" onclick="showPage('writing')">
+        <div class="card-icon">✍️</div>
+        <div class="card-title">书写指导</div>
+        <div class="card-desc">笔顺动画演示、田字格书写示范。帮助掌握正确的汉字书写顺序和结构。</div>
+        <span class="card-tag">书写学习</span>
+      </div>
     </div>
-    <div class="stat-item">
-      <span class="stat-num">4</span>
-      <div class="stat-label">互动模块</div>
+
+    <footer>
+      <p>汉字乐园 · 人教版小学语文生字学习中心</p>
+      <p style="margin-top:8px;">让每个孩子都能快乐学汉字</p>
+    </footer>
+  </div>
+
+  <!-- LEARNING PAGE -->
+  <div id="learningPage" class="page-section">
+    <div style="padding-top: 40px;">
+      <button class="back-btn" onclick="showPage('home')">← 返回首页</button>
+      <h2 class="section-title" id="learningTitle">📖 生字学习</h2>
+      
+      <div style="margin-bottom: 20px;">
+        <label style="font-weight: 600; margin-right: 10px;">选择年级：</label>
+        <select id="gradeSelect" onchange="loadGrade(this.value)" style="padding: 8px 16px; border-radius: 8px; border: 1px solid var(--gold); font-family: inherit; font-size: 1em;">
+          <option value="">请选择年级</option>
+        </select>
+      </div>
+
+      <div class="char-grid" id="charGrid"></div>
     </div>
   </div>
 
-  <!-- Grade Selector -->
-  <div class="grade-section">
-    <h2 class="section-title">📚 按年级选择</h2>
-    <div class="grade-grid" id="gradeGrid"></div>
+  <!-- PRACTICE PAGE -->
+  <div id="practicePage" class="page-section">
+    <div style="padding-top: 40px;">
+      <button class="back-btn" onclick="showPage('home')">← 返回首页</button>
+      <h2 class="section-title">✏️ 生字练习</h2>
+      
+      <div class="quiz-container" id="quizContainer">
+        <div class="quiz-score">
+          得分：<span class="score-num" id="scoreNum">0</span>
+        </div>
+        <div id="quizContent">
+          <div class="quiz-question">
+            <p>这个字的拼音是什么？</p>
+            <div class="quiz-char" id="quizChar">汉</div>
+          </div>
+          <div class="quiz-options" id="quizOptions"></div>
+          <div class="quiz-result" id="quizResult"></div>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+          <button class="btn btn-primary" onclick="nextQuestion()">下一题</button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Function Modules -->
-  <h2 class="section-title">🎯 功能模块</h2>
-  <div class="modules">
-    <a href="learning.html" class="module-card">
-      <div class="card-icon">📖</div>
-      <div class="card-title">完整生字资料</div>
-      <div class="card-desc">全部生字按年级、单元系统整理。包含拼音、笔画、部首、结构、释义及常用组词。</div>
-      <span class="card-tag">静态资料</span>
-    </a>
-
-    <a href="practice.html" class="module-card">
-      <div class="card-icon">✏️</div>
-      <div class="card-title">生字练习</div>
-      <div class="card-desc">多种互动题型：拼音选择、部首识别、组词填空、笔画排序。即时反馈，自动评分。</div>
-      <span class="card-tag">互动练习</span>
-    </a>
-
-    <a href="game.html" class="module-card">
-      <div class="card-icon">🎮</div>
-      <div class="card-title">生字闯关</div>
-      <div class="card-desc">游戏化学习体验，多个关卡逐步解锁。拼音挑战、字形辨认、组词达人等丰富题型。</div>
-      <span class="card-tag">互动游戏</span>
-    </a>
-
-    <a href="writing.html" class="module-card">
-      <div class="card-icon">✍️</div>
-      <div class="card-title">书写指导</div>
-      <div class="card-desc">笔顺动画演示、田字格书写示范。帮助掌握正确的汉字书写顺序和结构。</div>
-      <span class="card-tag">书写学习</span>
-    </a>
+  <!-- GAME PAGE -->
+  <div id="gamePage" class="page-section">
+    <div style="padding-top: 40px;">
+      <button class="back-btn" onclick="showPage('home')">← 返回首页</button>
+      <h2 class="section-title">🎮 生字闯关</h2>
+      
+      <div class="game-levels" id="gameLevels"></div>
+      
+      <div id="gamePlay" style="display: none;">
+        <div class="quiz-container">
+          <div class="quiz-question">
+            <p id="gameQuestion">请选出正确的拼音</p>
+            <div class="quiz-char" id="gameChar">字</div>
+          </div>
+          <div class="quiz-options" id="gameOptions"></div>
+          <div class="quiz-result" id="gameResult"></div>
+          <div style="text-align: center; margin-top: 20px;">
+            <button class="btn btn-primary" onclick="nextGameQuestion()">下一题</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <footer>
-    <p>汉字乐园 · 人教版小学语文生字学习中心</p>
-    <p style="margin-top:8px;">让每个孩子都能快乐学汉字</p>
-  </footer>
+  <!-- WRITING PAGE -->
+  <div id="writingPage" class="page-section">
+    <div style="padding-top: 40px;">
+      <button class="back-btn" onclick="showPage('home')">← 返回首页</button>
+      <h2 class="section-title">✍️ 书写练习</h2>
+      
+      <div style="text-align: center; margin: 20px 0;">
+        <label style="font-weight: 600; margin-right: 10px;">练习汉字：</label>
+        <input type="text" id="writingChar" value="汉" maxlength="1" style="padding: 8px 16px; border-radius: 8px; border: 1px solid var(--gold); font-family: inherit; font-size: 1.2em; width: 60px; text-align: center;">
+        <button class="btn btn-secondary" onclick="updateWritingChar()" style="margin-left: 10px;">更新</button>
+      </div>
+
+      <div class="canvas-container">
+        <canvas id="writingCanvas" class="writing-canvas" width="300" height="300"></canvas>
+        <div class="canvas-controls">
+          <button class="btn btn-secondary" onclick="clearCanvas()">清除</button>
+          <button class="btn btn-primary" onclick="downloadCanvas()">下载</button>
+        </div>
+      </div>
+
+      <div style="background: var(--card-bg); border-radius: 12px; padding: 24px; margin: 20px 0;">
+        <h3 style="color: var(--gold); margin-bottom: 12px;">书写提示</h3>
+        <ul style="padding-left: 20px; color: #555; line-height: 2;">
+          <li>按照正确的笔顺书写汉字</li>
+          <li>注意笔画在田字格中的位置</li>
+          <li>保持笔画粗细均匀</li>
+          <li>书写完成后可以下载保存</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<script src="data/characters_data.js"></script>
+<!-- Detail Modal -->
+<div class="modal-overlay" id="detailModal" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="detail-char" id="detailChar">汉</div>
+    <div class="detail-pinyin" id="detailPinyin">hàn</div>
+    <div class="detail-info">
+      <div class="info-item">
+        <div class="info-label">部首</div>
+        <div class="info-value" id="detailRadical">氵</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">笔画</div>
+        <div class="info-value" id="detailStrokes">5</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">结构</div>
+        <div class="info-value" id="detailStructure">左右</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">年级</div>
+        <div class="info-value" id="detailGrade">一年级上</div>
+      </div>
+    </div>
+    <div class="detail-section">
+      <h3>释义</h3>
+      <p id="detailMeaning">汉族的简称；指男子；银河。</p>
+    </div>
+    <div class="detail-section">
+      <h3>常用组词</h3>
+      <div class="words-list" id="detailWords">
+        <span class="word-tag">汉字</span>
+        <span class="word-tag">汉语</span>
+        <span class="word-tag">汉族</span>
+        <span class="word-tag">老汉</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-// Generate grade cards
+// ============ DATA ============
 const grades = [
   {name: "一年级上", label: "一上", chars: 150},
   {name: "一年级下", label: "一下", chars: 200},
@@ -312,11 +762,92 @@ const grades = [
   {name: "六年级下", label: "六下", chars: 180},
 ];
 
+// Sample character data
+const charData = {
+  "一年级上": [
+    {char: "天", pinyin: "tiān", radical: "大", strokes: 4, structure: "独体", meaning: "天空；天气；自然", words: ["天空", "天气", "今天", "明天"]},
+    {char: "地", pinyin: "dì", radical: "土", strokes: 6, structure: "左右", meaning: "地球；地面；土地", words: ["地球", "地面", "土地", "大地"]},
+    {char: "人", pinyin: "rén", radical: "人", strokes: 2, structure: "独体", meaning: "人类；别人；成年人", words: ["人们", "大人", "好人", "人民"]},
+    {char: "你", pinyin: "nǐ", radical: "亻", strokes: 7, structure: "左右", meaning: "第二人称代词", words: ["你好", "你们", "你的"]},
+    {char: "我", pinyin: "wǒ", radical: "戈", strokes: 7, structure: "独体", meaning: "第一人称代词", words: ["我们", "我的", "自我"]},
+    {char: "他", pinyin: "tā", radical: "亻", strokes: 5, structure: "左右", meaning: "第三人称代词", words: ["他们", "他的", "其他"]},
+    {char: "一", pinyin: "yī", radical: "一", strokes: 1, structure: "独体", meaning: "数字；全；满", words: ["一个", "一起", "一定", "一样"]},
+    {char: "二", pinyin: "èr", radical: "二", strokes: 2, structure: "独体", meaning: "数字；次等", words: ["二个", "第二", "二月"]},
+    {char: "三", pinyin: "sān", radical: "一", strokes: 3, structure: "独体", meaning: "数字；多次", words: ["三个", "三月", "三次"]},
+    {char: "四", pinyin: "sì", radical: "囗", strokes: 5, structure: "全包围", meaning: "数字", words: ["四个", "四月", "四方"]},
+    {char: "五", pinyin: "wǔ", radical: "二", strokes: 4, structure: "独体", meaning: "数字", words: ["五个", "五月", "五彩"]},
+    {char: "六", pinyin: "liù", radical: "八", strokes: 4, structure: "独体", meaning: "数字", words: ["六个", "六月", "六一"]},
+  ],
+  "一年级下": [
+    {char: "春", pinyin: "chūn", radical: "日", strokes: 9, structure: "上下", meaning: "春季；生机", words: ["春天", "春风", "春雨", "春季"]},
+    {char: "夏", pinyin: "xià", radical: "夂", strokes: 10, structure: "上下", meaning: "夏季；大", words: ["夏天", "夏日", "夏季"]},
+    {char: "秋", pinyin: "qiū", radical: "禾", strokes: 9, structure: "左右", meaning: "秋季；收成", words: ["秋天", "秋风", "秋雨", "秋季"]},
+    {char: "冬", pinyin: "dōng", radical: "夂", strokes: 5, structure: "上下", meaning: "冬季；结束", words: ["冬天", "冬日", "冬季", "冬瓜"]},
+    {char: "风", pinyin: "fēng", radical: "风", strokes: 4, structure: "半包围", meaning: "空气流动；风气", words: ["风雨", "大风", "风景", "春风"]},
+    {char: "雪", pinyin: "xuě", radical: "雨", strokes: 11, structure: "上下", meaning: "雪花；白色", words: ["雪花", "下雪", "雪白", "雪人"]},
+    {char: "花", pinyin: "huā", radical: "艹", strokes: 7, structure: "上下", meaning: "花朵；花纹；花费", words: ["花朵", "花园", "开花", "红花"]},
+    {char: "飞", pinyin: "fēi", radical: "飞", strokes: 3, structure: "独体", meaning: "飞翔；快速", words: ["飞鸟", "飞机", "飞行", "飞快"]},
+    {char: "入", pinyin: "rù", radical: "入", strokes: 2, structure: "独体", meaning: "进入；加入", words: ["进入", "入口", "加入", "入学"]},
+  ],
+  "二年级上": [
+    {char: "两", pinyin: "liǎng", radical: "一", strokes: 7, structure: "独体", meaning: "数目；双方", words: ["两个", "两天", "两边", "两年"]},
+    {char: "哪", pinyin: "nǎ", radical: "口", strokes: 9, structure: "左右", meaning: "疑问代词", words: ["哪里", "哪个", "哪些"]},
+    {char: "宽", pinyin: "kuān", radical: "宀", strokes: 10, structure: "上下", meaning: "宽阔；放宽", words: ["宽阔", "宽大", "宽广", "宽容"]},
+    {char: "顶", pinyin: "dǐng", radical: "页", strokes: 8, structure: "左右", meaning: "最高处；支撑", words: ["山顶", "头顶", "屋顶", "顶级"]},
+    {char: "眼", pinyin: "yǎn", radical: "目", strokes: 11, structure: "左右", meaning: "眼睛；孔洞", words: ["眼睛", "眼光", "眼泪", "眼前"]},
+    {char: "睛", pinyin: "jīng", radical: "目", strokes: 13, structure: "左右", meaning: "眼珠", words: ["眼睛", "定睛", "点睛"]},
+    {char: "肚", pinyin: "dù", radical: "月", strokes: 7, structure: "左右", meaning: "腹部", words: ["肚子", "肚皮", "鱼肚"]},
+    {char: "皮", pinyin: "pí", radical: "皮", strokes: 5, structure: "独体", meaning: "皮肤；表面", words: ["皮肤", "皮球", "皮毛", "树皮"]},
+  ],
+};
+
+// Fill missing grades with sample data
+grades.forEach(g => {
+  if (!charData[g.name]) {
+    charData[g.name] = generateSampleChars(g.name, g.chars);
+  }
+});
+
+function generateSampleChars(gradeName, count) {
+  const sampleChars = [
+    {char: "学", pinyin: "xué", radical: "子", strokes: 8, structure: "上下", meaning: "学习；学问；学校", words: ["学习", "学生", "学校", "上学"]},
+    {char: "校", pinyin: "xiào", radical: "木", strokes: 10, structure: "左右", meaning: "学校；校正", words: ["学校", "校园", "校长", "校友"]},
+    {char: "老", pinyin: "lǎo", radical: "耂", strokes: 6, structure: "半包围", meaning: "年长；熟练；总是", words: ["老师", "老人", "老虎", "老板"]},
+    {char: "师", pinyin: "shī", radical: "巾", strokes: 6, structure: "左右", meaning: "老师；军队；学习", words: ["老师", "师傅", "医师", "军师"]},
+    {char: "同", pinyin: "tóng", radical: "口", strokes: 6, structure: "半包围", meaning: "相同；一起；和", words: ["同学", "相同", "同时", "同意"]},
+    {char: "文", pinyin: "wén", radical: "文", strokes: 4, structure: "独体", meaning: "文字；文章；文化", words: ["文字", "文章", "文化", "文学"]},
+    {char: "字", pinyin: "zì", radical: "宀", strokes: 6, structure: "上下", meaning: "文字；字体；名字", words: ["汉字", "文字", "名字", "字母"]},
+    {char: "书", pinyin: "shū", radical: "乛", strokes: 4, structure: "独体", meaning: "书本；书写；信件", words: ["书本", "读书", "书写", "家书"]},
+    {char: "本", pinyin: "běn", radical: "木", strokes: 5, structure: "独体", meaning: "根本；书本；量词", words: ["本来", "书本", "根本", "本子"]},
+    {char: "笔", pinyin: "bǐ", radical: "竹", strokes: 10, structure: "上下", meaning: "写字工具；笔画", words: ["铅笔", "毛笔", "笔记", "笔画"]},
+    {char: "纸", pinyin: "zhǐ", radical: "纟", strokes: 7, structure: "左右", meaning: "纸张；书信", words: ["纸张", "白纸", "报纸", "纸巾"]},
+    {char: "课", pinyin: "kè", radical: "讠", strokes: 10, structure: "左右", meaning: "课程；课时；税", words: ["上课", "课本", "课程", "下课"]},
+  ];
+  
+  const result = [];
+  for (let i = 0; i < Math.min(count, 50); i++) {
+    result.push(sampleChars[i % sampleChars.length]);
+  }
+  return result;
+}
+
+// ============ PAGE NAVIGATION ============
+function showPage(page) {
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  document.getElementById(page + 'Page').classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ============ HOME PAGE ============
 const gradeGrid = document.getElementById('gradeGrid');
 grades.forEach(g => {
-  const card = document.createElement('a');
-  card.href = `learning.html?grade=${encodeURIComponent(g.name)}`;
+  const card = document.createElement('div');
   card.className = 'grade-card';
+  card.onclick = () => {
+    showPage('learning');
+    document.getElementById('gradeSelect').value = g.name;
+    loadGrade(g.name);
+  };
   card.innerHTML = `
     <div class="grade-num">${g.label.replace(/[^\d]/g, '')}</div>
     <div class="grade-label">${g.label}</div>
@@ -324,6 +855,287 @@ grades.forEach(g => {
   `;
   gradeGrid.appendChild(card);
 });
+
+// ============ LEARNING PAGE ============
+const gradeSelect = document.getElementById('gradeSelect');
+grades.forEach(g => {
+  const option = document.createElement('option');
+  option.value = g.name;
+  option.textContent = g.name;
+  gradeSelect.appendChild(option);
+});
+
+function loadGrade(gradeName) {
+  if (!gradeName) return;
+  document.getElementById('learningTitle').textContent = `📖 ${gradeName} 生字表`;
+  const chars = charData[gradeName] || [];
+  const charGrid = document.getElementById('charGrid');
+  charGrid.innerHTML = '';
+  
+  chars.forEach((c, i) => {
+    const cell = document.createElement('div');
+    cell.className = 'char-cell';
+    cell.onclick = () => showDetail(c);
+    cell.innerHTML = `
+      <div class="char-display">${c.char}</div>
+      <div class="char-pinyin">${c.pinyin}</div>
+    `;
+    charGrid.appendChild(cell);
+  });
+}
+
+function showDetail(charInfo) {
+  document.getElementById('detailChar').textContent = charInfo.char;
+  document.getElementById('detailPinyin').textContent = charInfo.pinyin;
+  document.getElementById('detailRadical').textContent = charInfo.radical;
+  document.getElementById('detailStrokes').textContent = charInfo.strokes;
+  document.getElementById('detailStructure').textContent = charInfo.structure;
+  document.getElementById('detailMeaning').textContent = charInfo.meaning;
+  
+  const wordsContainer = document.getElementById('detailWords');
+  wordsContainer.innerHTML = '';
+  charInfo.words.forEach(w => {
+    const tag = document.createElement('span');
+    tag.className = 'word-tag';
+    tag.textContent = w;
+    wordsContainer.appendChild(tag);
+  });
+  
+  document.getElementById('detailModal').classList.add('active');
+}
+
+function closeModal(event) {
+  if (!event || event.target === document.getElementById('detailModal')) {
+    document.getElementById('detailModal').classList.remove('active');
+  }
+}
+
+// ============ PRACTICE PAGE ============
+let currentScore = 0;
+let currentQuestion = null;
+
+function generateQuestion() {
+  const allChars = [];
+  Object.values(charData).forEach(arr => allChars.push(...arr));
+  const correct = allChars[Math.floor(Math.random() * allChars.length)];
+  
+  const options = [correct];
+  while (options.length < 4) {
+    const random = allChars[Math.floor(Math.random() * allChars.length)];
+    if (!options.find(o => o.pinyin === random.pinyin)) {
+      options.push(random);
+    }
+  }
+  
+  // Shuffle options
+  options.sort(() => Math.random() - 0.5);
+  
+  return { correct, options };
+}
+
+function nextQuestion() {
+  const q = generateQuestion();
+  currentQuestion = q;
+  
+  document.getElementById('quizChar').textContent = q.correct.char;
+  document.getElementById('quizResult').textContent = '';
+  
+  const optionsContainer = document.getElementById('quizOptions');
+  optionsContainer.innerHTML = '';
+  
+  q.options.forEach(opt => {
+    const btn = document.createElement('div');
+    btn.className = 'quiz-option';
+    btn.textContent = opt.pinyin;
+    btn.onclick = () => checkAnswer(btn, opt);
+    optionsContainer.appendChild(btn);
+  });
+}
+
+function checkAnswer(btn, selected) {
+  const options = document.querySelectorAll('.quiz-option');
+  options.forEach(opt => {
+    opt.style.pointerEvents = 'none';
+    if (opt.textContent === currentQuestion.correct.pinyin) {
+      opt.classList.add('correct');
+    }
+  });
+  
+  if (selected.pinyin === currentQuestion.correct.pinyin) {
+    currentScore += 10;
+    document.getElementById('quizResult').textContent = '✅ 回答正确！';
+    document.getElementById('quizResult').style.color = 'var(--green)';
+  } else {
+    btn.classList.add('wrong');
+    document.getElementById('quizResult').textContent = `❌ 错误！正确答案是 ${currentQuestion.correct.pinyin}`;
+    document.getElementById('quizResult').style.color = '#dc2626';
+  }
+  
+  document.getElementById('scoreNum').textContent = currentScore;
+}
+
+// ============ GAME PAGE ============
+const levels = [
+  {num: 1, name: "拼音新手", desc: "认识基本拼音", stars: 0},
+  {num: 2, name: "部首达人", desc: "识别常见部首", stars: 0},
+  {num: 3, name: "组词高手", desc: "正确组词挑战", stars: 0},
+  {num: 4, name: "笔画大师", desc: "数笔画大挑战", stars: 0},
+  {num: 5, name: "结构专家", desc: "判断字形结构", stars: 0},
+  {num: 6, name: "综合王者", desc: "全面知识考验", stars: 0},
+];
+
+function renderLevels() {
+  const container = document.getElementById('gameLevels');
+  container.innerHTML = '';
+  
+  levels.forEach((level, i) => {
+    const card = document.createElement('div');
+    card.className = `level-card ${i > 0 && levels[i-1].stars === 0 ? 'locked' : ''}`;
+    card.onclick = () => startLevel(level);
+    card.innerHTML = `
+      <div class="level-num">${level.num}</div>
+      <div class="level-name">${level.name}</div>
+      <div class="level-desc">${level.desc}</div>
+      <div class="stars">${'⭐'.repeat(level.stars)}${'☆'.repeat(3-level.stars)}</div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function startLevel(level) {
+  document.getElementById('gameLevels').style.display = 'none';
+  document.getElementById('gamePlay').style.display = 'block';
+  nextGameQuestion();
+}
+
+function nextGameQuestion() {
+  const q = generateQuestion();
+  document.getElementById('gameChar').textContent = q.correct.char;
+  document.getElementById('gameResult').textContent = '';
+  
+  const optionsContainer = document.getElementById('gameOptions');
+  optionsContainer.innerHTML = '';
+  
+  q.options.forEach(opt => {
+    const btn = document.createElement('div');
+    btn.className = 'quiz-option';
+    btn.textContent = opt.pinyin;
+    btn.onclick = () => {
+      if (opt.pinyin === q.correct.pinyin) {
+        btn.classList.add('correct');
+        document.getElementById('gameResult').textContent = '✅ 正确！';
+        document.getElementById('gameResult').style.color = 'var(--green)';
+      } else {
+        btn.classList.add('wrong');
+        document.getElementById('gameResult').textContent = '❌ 错误！';
+        document.getElementById('gameResult').style.color = '#dc2626';
+      }
+    };
+    optionsContainer.appendChild(btn);
+  });
+}
+
+renderLevels();
+
+// ============ WRITING PAGE ============
+const canvas = document.getElementById('writingCanvas');
+const ctx = canvas.getContext('2d');
+let isDrawing = false;
+
+function initCanvas() {
+  ctx.strokeStyle = '#2C2C2C';
+  ctx.lineWidth = 3;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  
+  // Draw grid
+  ctx.strokeStyle = 'rgba(201, 169, 97, 0.2)';
+  ctx.lineWidth = 1;
+  
+  // Outer border
+  ctx.strokeRect(0, 0, 300, 300);
+  
+  // Cross lines
+  ctx.beginPath();
+  ctx.moveTo(150, 0); ctx.lineTo(150, 300);
+  ctx.moveTo(0, 150); ctx.lineTo(300, 150);
+  ctx.stroke();
+  
+  // Diagonal lines
+  ctx.beginPath();
+  ctx.moveTo(0, 0); ctx.lineTo(300, 300);
+  ctx.moveTo(300, 0); ctx.lineTo(0, 300);
+  ctx.stroke();
+  
+  ctx.strokeStyle = '#2C2C2C';
+  ctx.lineWidth = 3;
+}
+
+initCanvas();
+
+canvas.addEventListener('mousedown', startDrawing);
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', stopDrawing);
+canvas.addEventListener('mouseout', stopDrawing);
+
+canvas.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  const touch = e.touches[0];
+  const rect = canvas.getBoundingClientRect();
+  startDrawing({offsetX: touch.clientX - rect.left, offsetY: touch.clientY - rect.top});
+});
+canvas.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  const touch = e.touches[0];
+  const rect = canvas.getBoundingClientRect();
+  draw({offsetX: touch.clientX - rect.left, offsetY: touch.clientY - rect.top});
+});
+canvas.addEventListener('touchend', stopDrawing);
+
+function startDrawing(e) {
+  isDrawing = true;
+  ctx.beginPath();
+  ctx.moveTo(e.offsetX, e.offsetY);
+}
+
+function draw(e) {
+  if (!isDrawing) return;
+  ctx.lineTo(e.offsetX, e.offsetY);
+  ctx.stroke();
+}
+
+function stopDrawing() {
+  isDrawing = false;
+}
+
+function clearCanvas() {
+  ctx.clearRect(0, 0, 300, 300);
+  initCanvas();
+}
+
+function downloadCanvas() {
+  const link = document.createElement('a');
+  link.download = '汉字书写.png';
+  link.href = canvas.toDataURL();
+  link.click();
+}
+
+function updateWritingChar() {
+  const char = document.getElementById('writingChar').value;
+  if (char) {
+    clearCanvas();
+    // Draw the character lightly as guide
+    ctx.fillStyle = 'rgba(201, 169, 97, 0.15)';
+    ctx.font = '180px "Noto Serif SC", serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(char, 150, 150);
+    ctx.fillStyle = '#2C2C2C';
+  }
+}
+
+// Initialize practice
+nextQuestion();
 </script>
 </body>
 </html>
