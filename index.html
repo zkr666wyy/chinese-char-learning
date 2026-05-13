@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>汉字乐园 - 人教版小学语文生字学习中心</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #E85D04;
+    --gold: #C9A961;
+    --bg: #FAF7F2;
+    --text: #2C2C2C;
+    --light-gold: rgba(201, 169, 97, 0.12);
+    --card-bg: #FFFFFF;
+    --green: #2D8A3E;
+    --blue: #2563EB;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans SC', 'Noto Serif SC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header {
+    text-align: center;
+    padding: 70px 0 45px;
+    border-bottom: 2px solid var(--gold);
+    margin-bottom: 45px;
+  }
+  .brand {
+    font-size: 0.85em;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-size: 2.8em;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    letter-spacing: 4px;
+    font-family: 'Noto Serif SC', serif;
+  }
+  .subtitle {
+    font-size: 1.2em;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+  .tagline {
+    color: #888;
+    font-size: 0.95em;
+    margin-top: 18px;
+  }
+  .gold-line {
+    width: 80px;
+    height: 2px;
+    background: var(--gold);
+    margin: 18px auto;
+  }
+
+  /* Grade Selector */
+  .grade-section { margin-bottom: 50px; }
+  .section-title {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--text);
+    margin: 40px 0 25px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .grade-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .grade-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px 16px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+  .grade-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border-color: var(--gold);
+  }
+  .grade-num {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 6px;
+  }
+  .grade-label {
+    font-size: 0.95em;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .grade-meta {
+    font-size: 0.8em;
+    color: #999;
+    margin-top: 6px;
+  }
+
+  /* Module Cards */
+  .modules {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-bottom: 60px;
+  }
+  .module-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 36px 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+  .module-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border-color: var(--gold);
+  }
+  .card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    background: var(--light-gold);
+  }
+  .card-title {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .card-desc {
+    font-size: 0.9em;
+    color: #777;
+    line-height: 1.7;
+    flex-grow: 1;
+  }
+  .card-tag {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    background: var(--light-gold);
+    color: var(--gold);
+    align-self: flex-start;
+  }
+
+  /* Stats Bar */
+  .stats-bar {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 50px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--primary);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.85em;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 40px 0 60px;
+    border-top: 1px solid rgba(201, 169, 97, 0.3);
+    color: #999;
+    font-size: 0.85em;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    h1 { font-size: 2em; }
+    header { padding: 50px 0 35px; }
+    .grade-grid { grid-template-columns: repeat(3, 1fr); }
+    .modules { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="brand">汉字乐园</div>
+    <h1>小学语文生字学习</h1>
+    <div class="gold-line"></div>
+    <div class="subtitle">人教版教材 · 1-6年级全覆盖</div>
+    <p class="tagline">拼音 · 笔画 · 部首 · 组词 · 互动练习<br>让汉字学习变得有趣又高效</p>
+  </header>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-num">12</span>
+      <div class="stat-label">学期覆盖</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">50+</span>
+      <div class="stat-label">课文单元</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">3000+</span>
+      <div class="stat-label">生字收录</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">4</span>
+      <div class="stat-label">互动模块</div>
+    </div>
+  </div>
+
+  <!-- Grade Selector -->
+  <div class="grade-section">
+    <h2 class="section-title">📚 按年级选择</h2>
+    <div class="grade-grid" id="gradeGrid"></div>
+  </div>
+
+  <!-- Function Modules -->
+  <h2 class="section-title">🎯 功能模块</h2>
+  <div class="modules">
+    <a href="learning.html" class="module-card">
+      <div class="card-icon">📖</div>
+      <div class="card-title">完整生字资料</div>
+      <div class="card-desc">全部生字按年级、单元系统整理。包含拼音、笔画、部首、结构、释义及常用组词。</div>
+      <span class="card-tag">静态资料</span>
+    </a>
+
+    <a href="practice.html" class="module-card">
+      <div class="card-icon">✏️</div>
+      <div class="card-title">生字练习</div>
+      <div class="card-desc">多种互动题型：拼音选择、部首识别、组词填空、笔画排序。即时反馈，自动评分。</div>
+      <span class="card-tag">互动练习</span>
+    </a>
+
+    <a href="game.html" class="module-card">
+      <div class="card-icon">🎮</div>
+      <div class="card-title">生字闯关</div>
+      <div class="card-desc">游戏化学习体验，多个关卡逐步解锁。拼音挑战、字形辨认、组词达人等丰富题型。</div>
+      <span class="card-tag">互动游戏</span>
+    </a>
+
+    <a href="writing.html" class="module-card">
+      <div class="card-icon">✍️</div>
+      <div class="card-title">书写指导</div>
+      <div class="card-desc">笔顺动画演示、田字格书写示范。帮助掌握正确的汉字书写顺序和结构。</div>
+      <span class="card-tag">书写学习</span>
+    </a>
+  </div>
+
+  <footer>
+    <p>汉字乐园 · 人教版小学语文生字学习中心</p>
+    <p style="margin-top:8px;">让每个孩子都能快乐学汉字</p>
+  </footer>
+</div>
+
+<script src="data/characters_data.js"></script>
+<script>
+// Generate grade cards
+const grades = [
+  {name: "一年级上", label: "一上", chars: 150},
+  {name: "一年级下", label: "一下", chars: 200},
+  {name: "二年级上", label: "二上", chars: 250},
+  {name: "二年级下", label: "二下", chars: 280},
+  {name: "三年级上", label: "三上", chars: 250},
+  {name: "三年级下", label: "三下", chars: 250},
+  {name: "四年级上", label: "四上", chars: 220},
+  {name: "四年级下", label: "四下", chars: 220},
+  {name: "五年级上", label: "五上", chars: 200},
+  {name: "五年级下", label: "五下", chars: 200},
+  {name: "六年级上", label: "六上", chars: 180},
+  {name: "六年级下", label: "六下", chars: 180},
+];
+
+const gradeGrid = document.getElementById('gradeGrid');
+grades.forEach(g => {
+  const card = document.createElement('a');
+  card.href = `learning.html?grade=${encodeURIComponent(g.name)}`;
+  card.className = 'grade-card';
+  card.innerHTML = `
+    <div class="grade-num">${g.label.replace(/[^\d]/g, '')}</div>
+    <div class="grade-label">${g.label}</div>
+    <div class="grade-meta">约 ${g.chars} 字</div>
+  `;
+  gradeGrid.appendChild(card);
+});
+</script>
+</body>
+</html>
